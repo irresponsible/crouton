@@ -1,0 +1,6 @@
+[package]
+name = "crouton"
+version = "0.1.0"
+authors = ["jjl <james@behemoth>"]
+
+[dependencies]
