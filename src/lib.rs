@@ -14,17 +14,17 @@ pub enum Crouton<'decl: 'route, 'route: 'ret, 'ret> {
   LiteralBTreeMap(BTreeMap<&'decl str, Box<Crouton<'decl, 'route, 'ret>>>),
 }
 
-#[macro_export] macro_rules! end      { ($name:expr) => (Crouton::End(Box::new($name))) }
-#[macro_export] macro_rules! slurp    { ($name:expr) => (Crouton::Slurp(Box::new($name))) }
-#[macro_export] macro_rules! literal  { ($lit:expr,  $next:expr) => (Crouton::Literal(Box::new($lit), Box::new($next))) }
-#[macro_export] macro_rules! bind     { ($name:expr, $next:expr) => (Crouton::Bind(Box::new($name), Box::new($next))) }
-#[macro_export] macro_rules! cond     { ($cond:expr, $next:expr) => (Crouton::Cond($cond, Box::new($next))) }
-#[macro_export] macro_rules! bindcond { ($bind:expr, $cond:expr, $next:expr) => (Crouton::BindCond(Box::new($bind), $cond, Box::new($next))) }
-#[macro_export] macro_rules! orelse   { ($l:expr, $r:expr) => (Crouton::OrElse(Box::new($l), Box::new($r))) }
-#[macro_export] macro_rules! literalvec      { ($items:expr) => (Crouton::LiteralVec($items)) }
-#[macro_export] macro_rules! literalslice    { ($items:expr) => (Crouton::LiteralSlice($items)) }
-#[macro_export] macro_rules! literalhashmap  { ($items:expr) => (Crouton::LiteralHashMap($items)) }
-#[macro_export] macro_rules! literalbtreemap { ($items:expr) => (Crouton::LiteralBTreeMap($items)) }
+#[macro_export] macro_rules! end      { ($name:expr) => ($crate::Crouton::End(Box::new($name))) }
+#[macro_export] macro_rules! slurp    { ($name:expr) => ($crate::Crouton::Slurp(Box::new($name))) }
+#[macro_export] macro_rules! literal  { ($lit:expr,  $next:expr) => ($crate::Crouton::Literal(Box::new($lit), Box::new($next))) }
+#[macro_export] macro_rules! bind     { ($name:expr, $next:expr) => ($crate::Crouton::Bind(Box::new($name), Box::new($next))) }
+#[macro_export] macro_rules! cond     { ($cond:expr, $next:expr) => ($crate::Crouton::Cond($cond, Box::new($next))) }
+#[macro_export] macro_rules! bindcond { ($bind:expr, $cond:expr, $next:expr) => ($crate::Crouton::BindCond(Box::new($bind), $cond, Box::new($next))) }
+#[macro_export] macro_rules! orelse   { ($l:expr, $r:expr) => ($crate::Crouton::OrElse(Box::new($l), Box::new($r))) }
+#[macro_export] macro_rules! literalvec      { ($items:expr) => ($crate::Crouton::LiteralVec($items)) }
+#[macro_export] macro_rules! literalslice    { ($items:expr) => ($crate::Crouton::LiteralSlice($items)) }
+#[macro_export] macro_rules! literalhashmap  { ($items:expr) => ($crate::Crouton::LiteralHashMap($items)) }
+#[macro_export] macro_rules! literalbtreemap { ($items:expr) => ($crate::Crouton::LiteralBTreeMap($items)) }
 
 #[derive(Debug)]
 pub struct Routing<'decl: 'route, 'route: 'ret, 'ret> {
