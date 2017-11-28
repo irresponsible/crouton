@@ -40,7 +40,7 @@ impl<'decl: 'route, 'route: 'ret, 'ret> Routing<'decl, 'route, 'ret> {
 }
 
 pub type RouteResult<'decl: 'route, 'route: 'ret, 'ret> = Result<Route<'decl, 'route>, Routing<'decl, 'route, 'ret>>;
-pub type RouteOrRoute<'decl: 'route, 'route: 'ret, 'ret> = Result<Routing<'decl, 'route, 'ret>, Routing<'decl, 'route, 'ret>>;
+pub type RoutingResult<'decl: 'route, 'route: 'ret, 'ret> = Result<Routing<'decl, 'route, 'ret>, Routing<'decl, 'route, 'ret>>;
 
 #[derive(Debug)]
 pub struct Route<'decl: 'route, 'route> {
@@ -48,11 +48,11 @@ pub struct Route<'decl: 'route, 'route> {
   pub matches: Vec<(&'decl str, &'route str)>,
 }
 
-fn skip<'decl: 'route, 'route: 'ret, 'ret>(routing: Routing<'decl, 'route, 'ret>) -> RouteOrRoute<'decl, 'route, 'ret> {
+fn skip<'decl: 'route, 'route: 'ret, 'ret>(routing: Routing<'decl, 'route, 'ret>) -> RoutingResult<'decl, 'route, 'ret> {
   routing.pieces.get(1..)
     .map(|ps| Routing { pieces: ps, matches: routing.matches.clone() }).ok_or(routing)
 }
-fn skip_bind<'decl: 'route, 'route: 'ret, 'ret>(routing: Routing<'decl, 'route, 'ret>, name: &'decl str) -> RouteOrRoute<'decl, 'route, 'ret> {
+fn skip_bind<'decl: 'route, 'route: 'ret, 'ret>(routing: Routing<'decl, 'route, 'ret>, name: &'decl str) -> RoutingResult<'decl, 'route, 'ret> {
   match routing.pieces.get(1..) {
     Some(ps) => {
       let mut ms = routing.matches.clone();

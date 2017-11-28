@@ -185,8 +185,8 @@ A. Because we're planning to build a reverse router soon.
 Q. Why do you have four options for matching a list of literals?:
 A. So you can pick the one that performs best in your situation:
 
-- When you have only a few options (as is typical), you can use `LiteralVec` or `LiteralSlice` depending on whether you want it to own the data
-- When you have more (like 100+), you can use `LiteralHashMap` or `LiteralBTreeMap`. Don't forget to benchmark!
+* When you have only a few options (as is typical), you can use `LiteralVec` or `LiteralSlice` depending on whether you want it to own the data
+* When you have more (like 100+), you can use `LiteralHashMap` or `LiteralBTreeMap`. Don't forget to benchmark!
 
 Q. You've clearly put work into making it efficient. Why?
 A. URL Routing typically happens on every request, so we can save power and behave better under load.
