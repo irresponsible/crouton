@@ -12,7 +12,7 @@ A high-performance hierarchical path router
 
 ## Usage
 
-```
+```rust
 #[macro_use] extern crate crouton;
 
 use crouton::{Crouton,Router};
